@@ -20,48 +20,48 @@ spec:
       containers:
       - name: logstash
         image: docker.elastic.co/logstash/logstash:6.3.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5044
         resources:
           requests:
-            cpu: "100m"
-            memory: "250Mi"
-          limits:
-            cpu: "500m"
+            cpu: "600m"
             memory: "500Mi"
+          limits:
+            cpu: "600m"
+            memory: "1Gi"
         livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 10
+          tcpSocket:
+            port: 9600
+          initialDelaySeconds: 120
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 3
-          timeoutSeconds: 1  
+          timeoutSeconds: 10  
         readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 10
+          tcpSocket:
+            port: 9600
+          initialDelaySeconds: 120
           periodSeconds: 5
-          successThreshold: 2
+          successThreshold: 1
           failureThreshold: 3
-          timeoutSeconds: 2
+          timeoutSeconds: 10
         volumeMounts:
           - name: config-volume
             mountPath: /usr/share/logstash/config
           - name: logstash-pipeline-volume
             mountPath: /usr/share/logstash/pipeline
       volumes:
-      - name: config-volume
-        configMap:
-          name: logstash-configmap
-          items:
-            - key: logstash.yml
-              path: logstash.yml
-      - name: logstash-pipeline-volume
-        configMap:
-          name: logstash-configmap
-          items:
-            - key: logstash.conf
-              path: logstash.conf
+        - name: config-volume
+          configMap:
+            name: logstash-configmap
+            items:
+              - key: logstash.yml
+                path: logstash.yml
+        - name: logstash-pipeline-volume
+          configMap:
+            name: logstash-configmap
+            items:
+              - key: logstash.conf
+                path: logstash.conf
+      restartPolicy: Always
