@@ -24,41 +24,41 @@ spec:
       - image: elasticsearch:6.8.4
         name: elasticsearch-logging
         ports:
-        - containerPort: 9200
-          name: db
-          protocol: TCP
-        - containerPort: 9300
-          name: transport
-          protocol: TCP
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "250Mi"
-            limits:
-              cpu: "500m"
-              memory: "500Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2  
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2
+          - containerPort: 9200
+            name: db
+            protocol: TCP
+          - containerPort: 9300
+            name: transport
+            protocol: TCP
+        resources:
+          requests:
+            cpu: "1000m"
+            memory: "1Gi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 2  
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 1
         volumeMounts:
-        - name: elasticsearch-logging
-          mountPath: /data
+          - name: elasticsearch-logging
+            mountPath: /data
       volumes:
       - name: elasticsearch-logging
         emptyDir: {}
-  
+ 

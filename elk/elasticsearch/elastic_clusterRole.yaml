@@ -5,12 +5,12 @@
       name: elasticsearch-logging
       labels:
         app: elasticsearch-logging
-          rules:
-            - apiGroups:
-            - ""
-              resources:
-                - "services"
-                - "namespaces"
-                - "endpoints"
-              verbs:
-                - "get"
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+        - "services"
+        - "namespaces"
+        - "endpoints"
+      verbs:
+        - "get"

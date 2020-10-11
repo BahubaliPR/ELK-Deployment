@@ -1,11 +1,17 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: logstash-deployment
   namespace: monitoring
+  labels:
+    app: logstash
 spec:
   replicas: 1
+  template:
+  selector:
+    matchLabels:
+      app: logstash
   template:
     metadata:
       labels:
@@ -17,30 +23,30 @@ spec:
         ports:
         - containerPort: 5044
         resources:
-            requests:
-              cpu: "100m"
-              memory: "250Mi"
-            limits:
-              cpu: "500m"
-              memory: "500Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2  
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2
+          requests:
+            cpu: "100m"
+            memory: "250Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 1  
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 2
+          failureThreshold: 3
+          timeoutSeconds: 2
         volumeMounts:
           - name: config-volume
             mountPath: /usr/share/logstash/config

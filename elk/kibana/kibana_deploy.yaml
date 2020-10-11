@@ -26,28 +26,28 @@ spec:
         - containerPort: 5601
           name: ui
           protocol: TCP
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "250Mi"
-            limits:
-              cpu: "500m"
-              memory: "500Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2  
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 2
-            failureThreshold: 3
-            timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "250Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 1  
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 2
+          failureThreshold: 3
+          timeoutSeconds: 2
