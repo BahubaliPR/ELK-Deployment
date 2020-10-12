@@ -22,8 +22,7 @@ pipeline {
             steps {
                script {
                    sh """
-                       sudo su
-                       sudo docker build -t springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/            
+                       ssh sudo docker build -t springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/            
                    """
 
                } 
