@@ -9,7 +9,7 @@ pipeline {
 
         stage('MVN Package') {
             steps {
-                sh '/usr/share/maven/mvn clean package'
+                sh '/usr/share/maven/bin/mvn clean package'
             }
         }
     }
