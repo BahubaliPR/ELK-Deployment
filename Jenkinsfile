@@ -9,9 +9,7 @@ pipeline {
 
         stage('MVN Package') {
             steps {
-                mvnHOME = tool name: 'maven3.6.3', type: 'maven'
-                mvnCMD = "${mvnHOME}/bin/mvn"
-                sh "${mvnCMD} clean package"
+                sh '/usr/share/maven/mvn clean package'
             }
         }
     }
