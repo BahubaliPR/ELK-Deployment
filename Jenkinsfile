@@ -12,7 +12,7 @@ pipeline {
             steps {
                 def mvnHOME = tool name: 'maven3.6.3', type: 'maven'
                 def mvnCMD = "${mvnHOME}/bin/mvn"
-                sh 'mvnCMD clean package'
+                sh "${mvnCMD} clean package"
             }
         }
     }
