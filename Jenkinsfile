@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f ./Deploy.yaml
+                    kubectl apply -f Deploy.yaml
                     """
                 }
             }
