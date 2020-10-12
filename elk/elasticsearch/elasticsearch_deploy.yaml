@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -7,7 +8,7 @@ metadata:
     app: elasticsearch-logging
 spec:
   serviceName: elasticsearch-logging
-  replicas: 1
+  replicas: 2
   updateStrategy:
     type: RollingUpdate
   selector:
@@ -37,19 +38,19 @@ spec:
             cpu: "1000m"
             memory: "2Gi"
         livenessProbe:
-          tcpSocket:
-            #path: /health
-            port: 9200
-          initialDelaySeconds: 60
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 3
-          timeoutSeconds: 1  
+          timeoutSeconds: 2  
         readinessProbe:
-          tcpSocket:
-            #path: /health
-            port: 9200
-          initialDelaySeconds: 60
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 3
@@ -61,9 +62,3 @@ spec:
       - name: elasticsearch-logging
         emptyDir: {}
  
-      initContainers:
-      - image: alpine:3.6
-        command: ["/sbin/sysctl", "-w", "vm.max_map_count=262144"]
-        name: elasticsearch-logging-init
-        securityContext:
-          privileged: true

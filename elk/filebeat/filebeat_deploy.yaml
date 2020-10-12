@@ -30,29 +30,29 @@ spec:
         securityContext:
           runAsUser: 0
         volumeMounts:
-          - name: config
-            mountPath: /etc/filebeat.yml
-            readOnly: true
-            subPath: filebeat.yml
-          - name: prospectors
-            mountPath: /usr/share/filebeat/prospectors.d
-            readOnly: true
-          - name: data
-            mountPath: /usr/share/filebeat/data
-          - name: varlibdockercontainers
-            mountPath: /var/lib/docker/containers
-            readOnly: true
-      volumes:
         - name: config
-          configMap:
-            defaultMode: 0600
-            name: filebeat-config
-        - name: varlibdockercontainers
-          hostPath:
-            path: /var/lib/docker/containers
+          mountPath: /etc/filebeat.yml
+          readOnly: true
+          subPath: filebeat.yml
         - name: prospectors
-          configMap:
-            defaultMode: 0600
-            name: filebeat-prospectors
+          mountPath: /usr/share/filebeat/prospectors.d
+          readOnly: true
         - name: data
-          emptyDir: {}
+          mountPath: /usr/share/filebeat/data
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: filebeat-config
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: prospectors
+        configMap:
+          defaultMode: 0600
+          name: filebeat-prospectors
+      - name: data
+        emptyDir: {}

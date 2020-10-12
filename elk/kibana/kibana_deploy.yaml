@@ -41,8 +41,8 @@ spec:
             memory: "500Mi"
         livenessProbe:
           httpGet:
-            path: /
-            port: 5601
+            path: /health
+            port: 8080
           initialDelaySeconds: 10
           periodSeconds: 5
           successThreshold: 1
@@ -50,8 +50,8 @@ spec:
           timeoutSeconds: 1  
         readinessProbe:
           httpGet:
-            path: /
-            port: 5601
+            path: /health
+            port: 8080
           initialDelaySeconds: 10
           periodSeconds: 5
           successThreshold: 2
