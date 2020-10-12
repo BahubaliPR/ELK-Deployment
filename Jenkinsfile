@@ -28,5 +28,15 @@ pipeline {
                      
                } 
             }
+        
+        stage('Deploy in Kubernetes') {
+            steps {
+                script {
+                    sh """
+                    kubectl apply -f ./SpringBoot-App/Deploy.yaml
+                    """
+                }
+            }
+        }
         }
     }
