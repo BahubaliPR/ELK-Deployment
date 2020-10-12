@@ -9,10 +9,8 @@ pipeline {
 
         stage('MVN Package') {
             steps {
-                script {
                     sh 'cd /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/'
-                    sh '/usr/share/maven/bin/mvn clean package'
-                }              
+                    sh '/usr/share/maven/bin/mvn clean package'             
             }
         }
     }
