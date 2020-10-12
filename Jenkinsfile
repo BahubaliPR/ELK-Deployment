@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                      docker build -t springapp:1.5.14 /SpringBoot-App/.
+                      docker build -t springapp:1.5.14 ./SpringBoot-App/Dockerfile
                      """
                 }
                      
