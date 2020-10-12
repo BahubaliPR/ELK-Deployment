@@ -22,12 +22,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                      springAppImage=docker images springapp:1.5.14
-                      if [ $springAppImage -eq springapp:1.5.14 ]
-                      then
-                         echo "The image is already exists."
-                      else
-                         docker build -t springapp:1.5.14 ./SpringBoot-App/.
+                      docker build -t springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
                      
