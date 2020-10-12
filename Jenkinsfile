@@ -20,7 +20,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                     sh  'sudo docker build -t springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/'
+                     
+                     sh  'docker build -t springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/'
                } 
             }
         }
