@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v165.0.86.89
 kind: ConfigMap
 metadata:
   name: logstash-configmap

@@ -8,6 +8,12 @@ metadata:
     app: kibana-logging
 spec:
   replicas: 1
+  serviceName: kibana-logging 
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: kibana-logging
@@ -18,7 +24,7 @@ spec:
     spec:
       containers:
       - name: kibana-logging
-        image: docker.elastic.co/kibana/kibana-oss:6.8.4
+        image: docker.elastic.co/kibana/kibana-oss:7.5.2
         env:
           - name: ELASTICSEARCH_URL
             value: http://elasticsearch-logging:9200
@@ -31,8 +37,8 @@ spec:
             cpu: "100m"
             memory: "250Mi"
           limits:
-            cpu: "600m"
-            memory: "1Gi"
+            cpu: "500m"
+            memory: "500Mi"
         livenessProbe:
           httpGet:
             path: /
