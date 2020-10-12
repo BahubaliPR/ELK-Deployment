@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f Deploy.yaml
+                    kubectl create -f ./SpringBoot-App/Deploy.yaml
                     """
                 }
             }
