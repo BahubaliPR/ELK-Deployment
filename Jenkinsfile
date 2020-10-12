@@ -22,7 +22,7 @@ pipeline {
             steps {
                script {
                    sh """
-                       docker build --tag springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/            
+                       sudo docker build --tag springapp:1.5.14 /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App/            
                    """
 
                } 
