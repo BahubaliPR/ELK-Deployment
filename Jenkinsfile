@@ -9,10 +9,9 @@ pipeline {
 
         stage('MVN Package') {
             steps {
-                sh """
-                cd /var/lib/jenkins/workspace/My-CICD-Project/
-                /usr/share/maven/bin/mvn clean package
-                """
+                sh 'cd /var/lib/jenkins/workspace/My-CICD-Project/'
+                sh '/usr/share/maven/bin/mvn clean package'
+                
             }
         }
     }
