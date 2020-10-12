@@ -22,7 +22,12 @@ pipeline {
             steps {
                 script {
                     sh """
-                      docker build -t springapp:1.5.14 ./SpringBoot-App/.
+                      springAppImage=docker images springapp:1.5.14
+                      if [ ${springAppImage} -eq springapp:1.5.14 ]
+                      then
+                         echo "The image is already exists."
+                      else
+                         docker build -t springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
                      
@@ -33,7 +38,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f ./SpringBoot-App/Deploy.yaml
+                    kubectl apply -f ./Deploy.yaml
                     """
                 }
             }
