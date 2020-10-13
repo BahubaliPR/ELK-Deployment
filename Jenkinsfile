@@ -36,7 +36,7 @@ pipeline {
             }
                 script {
                     sh """
-                      docker push Bahubalipr/springapp:1.5.14
+                      docker push bahubalipr/springapp:1.5.14
                     """
              }
         }
