@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy application in K8S') {
             steps {
                 sh 'cd /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App'
-                kubernetesDeploy configs: './Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
+                kubernetesDeploy configs: '$workspace/Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
             }
          }
 
