@@ -47,11 +47,8 @@ pipeline {
                 kubernetesDeploy(
                     configs: '**/SpringBoot-App/*.yaml', 
                     kubeconfigId: 'KUBERNETES_CONFIG',
-                    enableConfigSubstitution: true
-
+                    enableConfigSubstitution: true)
             }
          }
-
-
         }
     }
