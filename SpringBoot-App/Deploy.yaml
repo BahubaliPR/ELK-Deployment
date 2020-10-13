@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-boot
@@ -22,6 +22,8 @@ spec:
           ports:
             - containerPort: 8080
               name: my-apps
+              protocol: TCP
+              
 
    
 
