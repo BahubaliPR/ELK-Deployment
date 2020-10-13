@@ -31,8 +31,8 @@ pipeline {
         
         stage('Docker Push') {
             steps {
-                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                   sh "docker login -u Bahubalipr -p ${DOCKER_HUB_CREDENTIALS}"
+                   withCredentials([string(credentialsId: 'DOCKER_HUB_CRED', variable: 'DOCKER_HUB_CRED')]) {
+                   sh "docker login -u bahubalipr -p ${DOCKER_HUB_CREDENTIALS}"
             }
                 script {
                     sh """
