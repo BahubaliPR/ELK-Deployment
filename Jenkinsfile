@@ -44,7 +44,7 @@ pipeline {
         
         stage('Deploy application in K8S') {
             steps {
-                kubernetesDeploy configs: '$workspace/Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
+                kubernetesDeploy configs: './SpringBoot-App/Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
             }
          }
 
