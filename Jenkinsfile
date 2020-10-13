@@ -22,12 +22,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                      docker images
-                      if [ $? != ''];
-                      then
-                         docker rmi bahubalipr/springapp:1.5.14
-                      else
-                         docker build -t bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
+                        docker build -t bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
                      
