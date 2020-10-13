@@ -44,7 +44,7 @@ pipeline {
         
         stage('Deploy application in K8S') {
             steps {
-                kubernetesDeploy configs: 'Deploy.yaml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                kubernetesDeploy configs: './SpringBoot-App/Deploy.yaml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
                 script {
                     sh """
                     kubectl create -f Deploy.yaml
