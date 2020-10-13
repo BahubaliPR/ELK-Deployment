@@ -22,7 +22,12 @@ pipeline {
             steps {
                 script {
                     sh """
-                      docker build -t bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
+                      docker images
+                      if [ $? != ''];
+                      then
+                         docker rmi bahubalipr/springapp:1.5.14
+                      else
+                         docker build -t bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
                      
@@ -44,12 +49,8 @@ pipeline {
         
         stage('Deploy application in K8S') {
             steps {
-                kubernetesDeploy configs: './SpringBoot-App/Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
-                script {
-                    sh """
-                    kubectl create -f Deploy.yaml
-                    """
-                }
+                sh 'cd /var/lib/jenkins/workspace/My-CICD-Project/SpringBoot-App'
+                kubernetesDeploy configs: 'Deploy.yaml', kubeconfigId: 'KUBERNETES_CONFIG'
             }
          }
 
