@@ -22,21 +22,36 @@ pipeline {
             steps {
                 script {
                     sh """
-                      docker build -t springapp:1.5.14 ./SpringBoot-App/.
+                      docker build -t Bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
                      
                } 
             }
         
-        stage('Deploy in Kubernetes') {
+        stage('Docker Push') {
             steps {
+                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+                   sh "docker login -u Bahubalipr -p ${DOCKER_HUB_CREDENTIALS}"
+            }
                 script {
                     sh """
-                    kubectl create -f Deploy.yaml
+                      docker push Bahubalipr/springapp:1.5.14
                     """
-                }
-            }
+             }
         }
+    }
+        
+        // stage('Deploy in Kubernetes') {
+        //     steps {
+        //         script {
+        //             sh """
+        //             kubectl create -f Deploy.yaml
+        //             """
+        //         }
+        //     }
+        //  }
+
+
         }
     }
