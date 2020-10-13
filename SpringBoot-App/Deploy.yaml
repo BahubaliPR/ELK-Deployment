@@ -16,7 +16,7 @@ spec:
         app: my-app
     spec:
       containers:
-        - image: springapp:1.5.14
+        - image: bahubali/springapp:1.5.14
           name: springapp
           ports:
             - containerPort: 8080
