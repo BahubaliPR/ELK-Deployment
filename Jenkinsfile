@@ -44,9 +44,9 @@ pipeline {
         
         stage('Deploy application in K8S') {
             steps {
-                sh 'chmod +x **/SpringBoot-App/*.yaml'
+                sh 'chmod +x ./SpringBoot-App/Deploy.yaml'
                 kubernetesDeploy(
-                    configs: '**/SpringBoot-App/*.yaml', 
+                    configs: '**/SpringBoot-App/Deploy.yaml', 
                     kubeconfigId: 'KUBERNETES_CONFIG',
                     enableConfigSubstitution: true)
             }
