@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        sudo docker rmi bahubalipr/springapp:1.5.14                        
+                        docker rmi bahubalipr/springapp:1.5.14                        
                         docker build -t bahubalipr/springapp:1.5.14 ./SpringBoot-App/.
                      """
                 }
