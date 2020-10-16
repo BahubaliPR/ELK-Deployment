@@ -20,7 +20,7 @@ spec:
         - image: bahubalipr/springapp:1.5.14
           name: springapp
           ports:
-            - containerPort: 8080
+            - containerPort: 8090
               name: my-apps
               protocol: TCP
               
